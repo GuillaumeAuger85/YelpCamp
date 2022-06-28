@@ -51,6 +51,8 @@ app.use(mongoSanitize());
 
 const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
 
+// const secret ='thisshouldbeabettersecret!'
+
 const store = MongoDBStore.create({
     mongoUrl: dbURL,
     secret,
