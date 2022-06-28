@@ -3,12 +3,10 @@ const Campground = require('../models/campground');
 const { places, descriptors } = require('./seedHelpers')
 const cities = require('./cities');
 const images = require('./images');
+// const { cloudinary } = require('../cloudinary');
 
-mongoose.connect('mongodb://localhost:27017/yelp-camp', {
-    useNewUrlParser: true,
-    useCreateIndex: true,
-    useUnifiedTopology: true
-});
+
+mongoose.connect('mongodb://localhost:27017/yelp-camp');
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, "connection error:"));
@@ -20,6 +18,7 @@ const sample = array => array[Math.floor(Math.random() * array.length)];
 
 
 const seedDB = async () => {
+    // await cloudinary.api.delete_all_resources(function (error,result){console.log(error,result)});
     await Campground.deleteMany({});
     for (let i = 0; i < 300; i++) {
         const random1000 = Math.floor(Math.random() * 1000);

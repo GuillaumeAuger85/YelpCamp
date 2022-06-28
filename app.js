@@ -28,6 +28,7 @@ const MongoDBStore = require('connect-mongo');
 //conection on mongoatlas db -> const dbURL = process.env.DB_URL
 // conection for localdb on my machine -> const dbURL ='mongodb://localhost:27017/yelp-camp'
 const dbURL = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
+// const dbURL = 'mongodb://localhost:27017/yelp-camp';
 
 mongoose.connect(dbURL);
 
@@ -56,8 +57,6 @@ const store = MongoDBStore.create({
     touchAfter: 25 * 60 * 60
 });
 
-// store: MongoStore.create({ mongoUrl: 'mongodb://localhost/test-app' })
-
 store.on('error', function (e) {
     console.log('session store error', e)
 });
@@ -70,7 +69,7 @@ const sessionConfig = {
     saveUninitialized: true,
     cookie: {
         httpOnly: true,
-        // secure: true,
+        secure: true,
         expires: Date.now() + 1000 * 60 * 60 * 24 * 7,
         maxAge: 1000 * 60 * 60 * 24 * 7
     }

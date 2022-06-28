@@ -9,3 +9,10 @@
     margin-bottom: 2rem;
 }
 
+@media (max-width:767px) {
+    #cluster-map{
+        width : 100%;
+        height: 300px;
+    }
+}
+

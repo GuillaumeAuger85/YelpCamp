@@ -6,7 +6,7 @@ const { cloudinary } = require('../cloudinary');
 
 module.exports.index = async (req, res) => {
     if (req.session.backTo) delete req.session.backTo;
-    const campgrounds = await Campground.find({});
+    const campgrounds = await Campground.find({}).populate('reviews');
     res.render('campgrounds/index', { campgrounds })
 };
 
@@ -38,13 +38,6 @@ module.exports.showCampground = async (req, res) => {
             path: "author"
         }
     }).populate('author');
-    if (!campground.images[0]) {
-        campground.images[0] = {
-            url: "https://res.cloudinary.com/dvp8rb3ci/image/upload/v1655325243/yelcamp/scott-goodwill-y8Ngwq34_Ak-unsplash_wmeev5.jpg",
-            filename: "Default"
-        }
-    }
-    // console.log(campground)
     if (!campground) {
         req.flash('error', 'Cannot find that campground!');
         return res.redirect('/campgrounds');
@@ -73,7 +66,7 @@ module.exports.updateCampground = async (req, res) => {
             await cloudinary.uploader.destroy(filename)
         }
         await campground.updateOne({ $pull: { images: { filename: { $in: req.body.deleteImages } } } });
-        // console.log(campground);
+        // console.log(campground.images);
     }
     req.flash('success', 'Successfully updated campground!');
     res.redirect(`/campgrounds/${campground._id}`)

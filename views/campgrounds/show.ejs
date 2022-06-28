@@ -1,15 +1,12 @@
 <% layout("layouts/boilerplates") %>
     <link rel="stylesheet" href="/stylesheets/stars.css">
-
-
     <div class="row">
-        <div class="col-6">
-
+        <div class="col-md-6">
             <div id="campgroundCaroussel" class="carousel slide" data-bs-ride="carousel">
                 <div class="carousel-inner">
                     <%if(!campground.images[0]) {%>
                         <div class="carousel-item active">
-                            <img src="https://res.cloudinary.com/dvp8rb3ci/image/upload/v1655325243/yelcamp/scott-goodwill-y8Ngwq34_Ak-unsplash_wmeev5.jpg"
+                            <img src="https://res.cloudinary.com/dvp8rb3ci/image/upload/c_scale,h_424,w_636/v1656182857/yelcamp/u3qdezfqawooeerw3cv3.jpg"
                                 class="d-block w-100" alt="">
                         </div>
                         <% } else {campground.images.forEach((img, i)=> {%>
@@ -33,12 +30,24 @@
             </div>
             <div class="card mb-3">
                 <div class="card-body">
-                    <h5 class="card-title">
+                    <h4 class="card-title  me-4">
                         <%= campground.title%>
-                    </h5>
-                    <p class="card-text">
-                        <%= campground.description%>
-                    </p>
+                    </h4>
+                    <% if(campground.reviews.length < 2) { %>
+                        <div class="">(<%= campground.reviews.length %>) Review</div>
+                        <% } else { %>
+                            <div class="">(<%= campground.reviews.length %>) Reviews</div>
+                            <% } %>
+                                <div class="">
+                                    <p class="starability-result" data-rating="<%= campground.averageReview %>">Rated:
+                                        <%= campground.averageReview %>
+                                            stars
+                                    </p>
+                                </div>
+                                <p class="card-text">
+                                    <%= campground.description%>
+                                </p>
+
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item text-muted">
@@ -61,16 +70,12 @@
                         </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-md-6">
             <div id='map'></div>
             <% if(currentUser){ %>
                 <h2>Leave a Review</h2>
                 <form action="/campgrounds/<%=campground._id%>/reviews" method="POST" class="mb-3 validated-form"
                     novalidate>
-                    <!-- <div class="mb-3">
-                    <label class="form-label" for="rating">Rating</label>
-                    <input class="form-range" type="range" min="1" max="5" name="review[rating]" id="rating">
-                    </div> -->
                     <div class="mb-3">
                         <fieldset class="starability-basic">
                             <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0"
@@ -107,7 +112,6 @@
                                 <p class="starability-result" data-rating="<%= review.rating %>">
                                     Rated: <%= review.rating %> stars
                                 </p>
-                                <!-- <h6 class="card-subtitle mb-2 text-muted">By <%= review.author.username%></h6> -->
                                 <p class="card-text">Review: <%= review.body %>
                                 </p>
                                 <% if( currentUser && review.author.equals(currentUser._id)) {%>
@@ -122,11 +126,11 @@
                         <% } %>
         </div>
     </div>
-      
+
 
     <script>
         const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-        const coordinates = <%-JSON.stringify(campground.geometry.coordinates)%>;
+        const coordinates = <%- JSON.stringify(campground.geometry.coordinates) %>;
         const campground = <%- JSON.stringify(campground) %>
     </script>
     <script src="/javascripts/showPageMaps.js"></script>

@@ -10,7 +10,8 @@ const ImageSchema = new Schema({
 
 ImageSchema.virtual('thumbnail').get(function () {
   return this.url.replace('/upload', '/upload/w_200');
-})
+});
+
 
 const opts = { toJSON: { virtuals: true } };
 
@@ -48,7 +49,21 @@ CampgroundSchema.virtual('properties.popUpMarkup').get(function () {
   <strong><a href="/campgrounds/${this._id}">${this.title}</a></strong>
   <p>${this.description.substring(0, 20)}...</p>
   `
+});
+
+CampgroundSchema.virtual('averageReview').get(function () {
+  let sum = 0;
+  for (let review of this.reviews) {
+    sum += review.rating;
+  }
+  const averageReview = Math.round(sum / (this.reviews.length));
+  return averageReview;
 })
+
+CampgroundSchema.pre('save', async function () {
+  for (let image of this.images) {
+    image.url = image.url.replace('/upload', '/upload/c_scale,h_424,w_636');
+  }})
 
 CampgroundSchema.post('findOneAndDelete', async function (doc) {
   if (doc) {
