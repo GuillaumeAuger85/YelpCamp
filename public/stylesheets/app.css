@@ -5,9 +5,11 @@
 
 #map{
     width : 100%;
-    height: 300px;
+    height: 200px;
     margin-bottom: 2rem;
 }
+
+
 
 @media (max-width:767px) {
     #cluster-map{
@@ -15,4 +17,27 @@
         height: 300px;
     }
 }
+
+@media(min-width:768px){
+    #reviews{
+        overflow: auto;
+        height: 60vh;
+    }
+}
+
+
+.alert-success{
+    animation: fadeOutAnimation ease-in 5000ms;
+}
+
+@keyframes fadeOutAnimation {
+    from {
+        opacity: 100%;
+    }
+    to {
+        opacity: 0%;
+        display :none;
+    }
+}
+
 

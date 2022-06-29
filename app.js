@@ -28,7 +28,6 @@ const MongoDBStore = require('connect-mongo');
 //conection on mongoatlas db -> const dbURL = process.env.DB_URL
 // conection for localdb on my machine -> const dbURL ='mongodb://localhost:27017/yelp-camp'
 const dbURL = process.env.DB_URL || 'mongodb://localhost:27017/yelp-camp';
-// const dbURL = 'mongodb://localhost:27017/yelp-camp';
 
 mongoose.connect(dbURL);
 
@@ -49,9 +48,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(mongoSanitize());
 
-// const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
-
-const secret =process.env.SECRET
+const secret = process.env.SECRET || 'thisshouldbeabettersecret!'
 
 const store = MongoDBStore.create({
     mongoUrl: dbURL,
