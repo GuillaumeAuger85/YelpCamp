@@ -1,32 +1,100 @@
-#cluster-map{
-    width : 100%;
+#cluster-map {
+    width: 100%;
     height: 500px;
 }
 
-#map{
-    width : 100%;
+#map {
+    width: 100%;
     height: 200px;
     margin-bottom: 2rem;
+}
+
+#validation {
+    font-size: 0.875em;
+}
+
+#validationPrice {
+    font-size: 0.875em;
+}
+
+#validationDescription {
+    font-size: 0.875em;
+}
+
+#validationTitle {
+    font-size: 0.875em;
+}
+
+#validationLocation {
+    font-size: 0.875em;
+}
+
+#invalideSignal {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+}
+
+#invalidePrice {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    z-index: 99;
+}
+
+#invalideDescription {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    z-index: 99;
+}
+
+#invalideTitle {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    z-index: 99;
+}
+
+#invalideLocation {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    top: 42px;
+    right: 10px;
+    z-index: 99;
+}
+
+.noDisplay {
+    display: none;
 }
 
 
 
 @media (max-width:767px) {
-    #cluster-map{
-        width : 100%;
+    #cluster-map {
+        width: 100%;
         height: 300px;
     }
 }
 
-@media(min-width:768px){
-    #reviews{
+@media(min-width:768px) {
+    #reviews {
         overflow: auto;
         height: 60vh;
     }
 }
 
 
-.alert-success{
+.alert-success {
     animation: fadeOutAnimation ease-in 5000ms;
 }
 
@@ -34,10 +102,9 @@
     from {
         opacity: 100%;
     }
+
     to {
         opacity: 0%;
-        display :none;
+        display: none;
     }
 }
-
-

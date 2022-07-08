@@ -1,14 +1,16 @@
-const mongoose= require ("mongoose");
+const { boolean } = require("joi");
+const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 const passportLocalMongoose = require('passport-local-mongoose');
 
 
-const userSchema= new Schema ({
-    email:{
+const userSchema = new Schema({
+    email: {
         type: String,
-        required:true,
+        required: true,
         unique: true
-    }
+    },
+    host: Boolean
 });
 userSchema.plugin(passportLocalMongoose);
 

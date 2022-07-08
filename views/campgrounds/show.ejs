@@ -6,7 +6,7 @@
                 <div class="carousel-inner">
                     <%if(!campground.images[0]) {%>
                         <div class="carousel-item active">
-                            <img src="https://res.cloudinary.com/dvp8rb3ci/image/upload/c_scale,h_424,w_636/v1656182857/yelcamp/u3qdezfqawooeerw3cv3.jpg"
+                            <img src="https://res.cloudinary.com/dvp8rb3ci/image/upload/c_scale,h_424,w_636/v1656615360/yelcamp/ehehpzxjdfhkhin0bmxq.jpg"
                                 class="d-block w-100" alt="">
                         </div>
                         <% } else {campground.images.forEach((img, i)=> {%>
@@ -54,7 +54,9 @@
                     <li class="list-group-item text-muted">
                         <%= campground.location%>
                     </li>
-                    <li class="list-group-item">Submitted by <%= campground.author.username%>
+                    <li class="list-group-item">Submitted by <h5 class=" d-inline">
+                            <%= campground.author.username%>
+                        </h5>
                     </li>
                     <li class="list-group-item">$<%= campground.price%>/night</li>
                 </ul>

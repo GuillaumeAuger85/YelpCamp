@@ -9,6 +9,9 @@
                     <div class="valid-feedback">
                         looks good!
                     </div>
+                    <div class="invalid-feedback">
+                        Please choose a title!
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="location ">Location:</label>
@@ -16,15 +19,17 @@
                     <div class="valid-feedback">
                         looks good!
                     </div>
-                </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Upload Image(s):</label>
-                    <input class="form-control" type="file" id="image" multiple name="image" >
-                    <div class="valid-feedback">
-                        looks good!
+                    <div class="invalid-feedback">
+                        Please choose a location!
                     </div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="inputContainer">
+                    <img id="invalideSignal" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
+                    <label id="imgLabel" for="image" class="form-label">Upload Image(s) Max 5 images:</label>
+                    <input class="form-control" type="file" id="image" multiple name="image" required>
+                </div>
+                <div class="mb-3" id="priceContainer">
+                    <img id="invalidePrice" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
                     <label for="price" class="form-label">Campground Price:</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
@@ -32,6 +37,7 @@
                             aria-label="Amount (to the nearest dollar)" aria-describedby="price-label"
                             name="campground[price]" required>
                     </div>
+                    <div id="validationPrice" class="d-none"></div>
                     <div class="valid-feedback">
                         looks good!
                     </div>
@@ -43,11 +49,18 @@
                     <div class="valid-feedback">
                         looks good!
                     </div>
+                    <div class="invalid-feedback">
+                        Description can't be empty!
+                    </div>
                 </div>
-                <div class="mb-3">
+                <div class="mt-5 text-center">
                     <button class="btn btn-success">Add Campground</button>
                 </div>
             </form>
-            <a href="/campgrounds">Back to all campgrounds</a>
+            <div class="mt-5">
+                <button class="btn btn-primary w-100" href="/campgrounds">Back to all campgrounds</button>
+            </div>
         </div>
     </div>
+
+    <script src="/javascripts/newFormValidation.js"></script>

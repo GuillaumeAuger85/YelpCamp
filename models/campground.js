@@ -12,12 +12,19 @@ ImageSchema.virtual('thumbnail').get(function () {
   return this.url.replace('/upload', '/upload/w_200');
 });
 
+const validateImages = (array) =>{
+     return array.length < 6
+}
+
 
 const opts = { toJSON: { virtuals: true } };
 
 const CampgroundSchema = new Schema({
   title: String,
-  images: [ImageSchema],
+  images: {
+    type:[ImageSchema],
+    validate : [validateImages, "Too much images!! You can upload 5 images max per campground."]
+  },
   geometry: {
     type: {
       type: String,

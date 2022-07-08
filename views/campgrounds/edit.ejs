@@ -4,47 +4,45 @@
         <div class="col-md-6 offset-md-3">
             <form action="/campgrounds/<%=campground._id%>?_method=PUT" method="POST" novalidate class="validated-form"
                 enctype='multipart/form-data'>
-                <div class="mb-3">
+                <div class="mb-3" id="titleContainer">
+                    <img id="invalideTitle" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
                     <label class="form-label" for="title">Title:</label>
                     <input type="text" class="form-control" id="title" name="campground[title]"
                         value="<%=campground.title%>" required>
-                    <div class="valid-feedback">
-                        looks good!
-                    </div>
+                    <div id="validationTitle" class="d-none"></div>
                 </div>
-                <div class="mb-3">
+                <div class="mb-3" id="locationContainer">
+                    <img id="invalideLocation" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
                     <label class="form-label" for="location ">Location:</label>
                     <input type="text" class="form-control" id="location" name="campground[location]"
                         value="<%=campground.location%>" required>
-                    <div class="valid-feedback">
-                        looks good!
-                    </div>
+                    <div id="validationLocation" class="d-none"></div>
                 </div>
-                <div class="mb-3">
-                    <label for="price" class="form-label">Campground Price</label>
+                <div class="mb-3" id="priceContainer">
+                    <img id="invalidePrice" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
+                    <label for="price" class="form-label">Campground Price:</label>
                     <div class="input-group">
                         <span class="input-group-text" id="price-label">$</span>
                         <input type="text" class="form-control" id="price" placeholder='0.00'
                             aria-label="Amount (to the nearest dollar)" aria-describedby="price-label"
                             name="campground[price]" value="<%=campground.price%>" required>
-                        <div class="valid-feedback">
-                            looks good!
-                        </div>
                     </div>
+                    <div id="validationPrice" class="d-none"></div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="description">Description</label>
+                <div class="mb-3" id="descriptionContainer">
+                    <img id="invalideDescription" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
+                    <label class="form-label" for="description">Description:</label>
                     <textarea type="text" class="form-control" id="description" name="campground[description]"
                         required><%=campground.description%></textarea>
-                    <div class="valid-feedback">
-                        looks good!
-                    </div>
+                    <div id="validationDescription" class="d-none"></div>
                 </div>
-                <div class="mb-3">
-                    <label for="image" class="form-label">Upload more Image(s):</label>
+                <div class="mb-3 inputContainer">
+                    <img id="invalideSignal" class="noDisplay" src="/img/invalideSignal.PNG" alt="">
+                    <label for="image" class="form-label">Upload image(s):</label>
                     <input class="form-control" type="file" id="image" multiple name="image">
+                    <div id="validation" class="d-none"></div>
                 </div>
-                <p> Delete Images </p>
+                <p> Delete images:</p>
                 <div class="row row-cols-md-4 gy-4 mb-3">
                     <% campground.images.forEach((image, i)=> { %>
                         <div class="col">
@@ -52,18 +50,25 @@
                                 <img class="card-img" src="<%= image.thumbnail %>" alt="">
                                 <div class="card-img-overlay text-end pt-1 pe-2">
                                     <label class="visually-hidden" for="image-<%= i %>">Delete Image</label>
-                                    <input class="form-check-input" type="checkbox" name="deleteImages[]"
+                                    <input class="form-check-input checkBox" type="checkbox" name="deleteImages[]"
                                         value="<%= image.filename %>" id="image-<%= i %>">
                                 </div>
                             </div>
                         </div>
                         <% }) %>
                 </div>
-                <div class="mb-3">
-                    <button class="btn btn-success me-5">Update Campground</button>
-                    <a class="btn btn-primary float-right" href="/campgrounds/<%=campground._id %>">Back to campground</a>
+                <div class="mb-3 mt-5 text-center">
+                    <button class="btn btn-success ">Update Campground</button>
                 </div>
             </form>
-            
+            <div class="text-center mb-2">
+                <button class="btn btn-primary mt-3 w-100" href="/campgrounds/<%=campground._id %>">Back to
+                    <%=campground.title%>
+                </button>
+            </div>
         </div>
     </div>
+    <script>
+        const campground = <%- JSON.stringify(campground) %>;
+    </script>
+    <script src="/javascripts/editFormValidation.js"></script>
