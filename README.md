@@ -1,6 +1,6 @@
 # YelpCamp
 
-###  See [YelpCamp](https://radiant-forest-08202.herokuapp.com/)
+###  Try the [YelpCamp](https://radiant-forest-08202.herokuapp.com/) App!
 
 ![nodeExpressEjsMongoDB-mongoose](https://user-images.githubusercontent.com/49698792/182192502-9fe9a7a9-adea-4145-a73f-a73e6dde4930.png)
 ![MapboxCloudinaryNpm](https://user-images.githubusercontent.com/49698792/182190109-4ed066d6-ff09-4e36-aa75-348ee720514d.png)
