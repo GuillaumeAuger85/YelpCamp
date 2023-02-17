@@ -50,7 +50,7 @@
 </table>
 
 
-### Screenshot
+### Screenshot:
  
  <p align="center">
   <img src="https://user-images.githubusercontent.com/49698792/182184871-f109af62-56f1-4079-a094-0ab738fa37ff.PNG" alt="Screenshot">
